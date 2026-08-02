@@ -1,0 +1,38 @@
+/* @theme chic-plum */
+/* シック / プラム×ローズゴールド: 振り返り・ポエム・キャリア話など、しっとり語る場向け */
+@import "base";
+@import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---- トーン: chic（明朝・角丸ほぼゼロ・字間広め・装飾控えめ） ---- */
+  --font-body: 'Zen Old Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --weight-head: 600;
+  --weight-title: 700;
+  --letter-head: 0.04em;
+  --letter-title: 0.08em;
+  --radius-lg: 2px;
+  --radius-md: 2px;
+  --radius-sm: 2px;
+  --radius-xs: 2px;
+  --radius-chip: 2px;
+  --radius-pill: 2px;
+  --radius-bar: 0;
+  --panel-bar-width: 2px;
+  --surface: var(--white);
+  --card-border: 1px solid var(--gray-200);
+  --orb-opacity: 0.55;
+  --hero-bg: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 100%);
+
+  /* ---- カラー: プラム×ローズゴールド ---- */
+  --primary: #4A2B45;
+  --primary-dark: #331D30;
+  --primary-bright: #5F3A59;
+  --accent: #96574F;
+  --accent-light: #F6EBE8;
+  --on-primary-sub: #DCC9D6;
+  --on-primary-muted: #C0A8BA;
+  --on-primary-faint: #E6D8E1;
+  --accent-glow: rgba(150, 87, 79, 0.30);
+  --shadow-color: rgba(74, 43, 69, 0.16);
+  --bg-alt: #F8F4F6;
+}

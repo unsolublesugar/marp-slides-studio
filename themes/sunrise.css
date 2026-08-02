@@ -1,0 +1,25 @@
+/* @theme sunrise */
+/* スタンダード / オレンジ×アンバー: 明るく前向きな暖色。LT・社内共有・キャリア話など */
+@import "base";
+
+:root {
+  /* ---- カラー: オレンジ×アンバー ---- */
+  --primary: #B45009;
+  --primary-dark: #8A3B04;
+  --primary-bright: #F08300;
+  --accent: #F5A623;
+  --accent-2: #F5622A;
+  --accent-ink: #C07000;       /* 淡色地の章番号用（アンバーのまま置くと沈む） */
+  --accent-light: #FFF3E0;
+  --on-primary-sub: #FBDCC0;
+  --on-primary-muted: #F7D3B0;
+  --on-primary-faint: #FEF1E5;
+  --accent-glow: rgba(245, 166, 35, 0.35);
+  --shadow-color: rgba(138, 59, 4, 0.16);
+  --bg-alt: #FFF8F0;
+  --code-bg: #3A1A02;          /* --primary-dark が明るく、--code-* が6:1を割るため個別指定 */
+
+  /* 暖色の面に乗る波の色（layout-wave が使う） */
+  --wave-1: #F5901B;
+  --wave-2: #FFC244;
+}

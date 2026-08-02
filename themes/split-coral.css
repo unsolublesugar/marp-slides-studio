@@ -1,0 +1,4 @@
+/* @theme split-coral */
+/* スプリット / コーラル×ピーチ: 左右分割。見出しと内容を対比させたい発表向け */
+@import "coral";
+@import "layout-split";

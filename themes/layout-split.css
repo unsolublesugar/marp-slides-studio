@@ -1,0 +1,87 @@
+/* @theme layout-split */
+/*
+ * レイアウトレイヤー: split（左右分割）
+ * 表紙・章扉・締めを縦2分割にし、本文スライドは「左に見出し／右に内容」の2カラムにする。
+ * 単体では使わず、カラーテーマの後に @import して重ねる:
+ *   @import "charcoal"; @import "layout-split";
+ * base.css と同じセレクタで上書きするため、必ず base より後に読み込むこと。
+ */
+
+/* ============ title: 左に濃色パネル、右は白 ============ */
+section.title {
+  background: linear-gradient(90deg, var(--primary) 0 48%, var(--white) 48% 100%);
+}
+section.title .orb.a {
+  width: 360px; height: 360px;
+  right: auto; left: -120px; top: -140px;
+}
+section.title .orb.b { display: none; }
+/* 左パネルに収める都合上、表紙タイトルは短め（20文字程度まで）が前提 */
+section.title h1 {
+  font-size: 1.7em;
+  max-width: 450px;
+  margin-left: 80px;
+}
+section.title .eyebrow,
+section.title h2,
+section.title .accent { margin-left: 80px; }
+section.title h2 { max-width: 450px; }
+section.title .meta { color: var(--gray-500); }
+
+/* ============ section: 左パネル＋右に章タイトル ============ */
+section.section {
+  background: var(--white);
+  align-items: flex-start;
+  text-align: left;
+  padding: 0 80px 0 calc(48% + 64px);
+}
+section.section .side {
+  left: 0;
+  right: auto;
+  width: 48%;
+  clip-path: none;
+}
+section.section h1 { max-width: 100%; }
+
+/* ============ content: 左に見出し、右に内容 ============ */
+section.content {
+  flex-direction: row;
+  align-items: stretch;
+  gap: 40px;
+}
+section.content .head {
+  width: 240px;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 0;
+}
+section.content .head h1,
+section.content h1.bare {
+  font-size: 1.3em;
+  padding-bottom: 0.5em;
+}
+section.content .body { min-width: 0; }
+/* 参考スライドだけは中央寄せの1カラムに戻す */
+section.content.reference {
+  flex-direction: column;
+  justify-content: center;
+}
+section.content.reference .head { width: auto; align-items: center; }
+
+/* ============ closing: 左パネル＋右にメッセージ ============ */
+section.closing {
+  background: linear-gradient(90deg, var(--primary) 0 48%, var(--white) 48% 100%);
+  padding-left: 48%;
+}
+section.closing .orb.a {
+  width: 380px; height: 380px;
+  left: -140px; bottom: -160px;
+}
+section.closing h1 {
+  color: var(--primary);
+  font-size: 1.7em;
+}
+section.closing p { color: var(--gray-700); }
+section.closing a { color: var(--accent); }

@@ -1,0 +1,194 @@
+/* @theme layout-aurora */
+/*
+ * レイアウトレイヤー: aurora（暗い全面キャンバス＋流れる光のリボン）
+ * 全スライドを濃色の地にし、四隅から伸びる光の弧を敷く。文字と面は暗背景向けに反転する。
+ * 単体では使わず、カラーテーマの後に @import して重ねる:
+ *   @import "aurora-blue"; @import "layout-aurora";
+ * 地の色は --canvas-bg、リボンの色は --ribbon-1..3 をカラーテーマ側が決める。
+ * base.css と同じセレクタで上書きするため、必ず base より後に読み込むこと。
+ */
+
+:root {
+  /* 暗い地の上で読ませるため、ニュートラルの明暗を反転する。
+     base.css は本文・カード地・罫線をこのスケールで書いているので、
+     ここを入れ替えるだけで面と文字がまとめて暗背景向けになる */
+  --gray-900: #EDF3F9;                  /* 本文 */
+  --gray-700: #C2CFDC;                  /* 補助テキスト */
+  --gray-500: #8FA1B3;                  /* キャプション・ページ番号 */
+  --gray-300: rgba(255, 255, 255, 0.24);
+  --gray-200: rgba(255, 255, 255, 0.14);
+  --gray-100: rgba(255, 255, 255, 0.10);
+  --gray-50: rgba(255, 255, 255, 0.06);
+
+  --surface: rgba(255, 255, 255, 0.055);
+  --bg-alt: var(--canvas-bg);           /* 章扉・引用も同じキャンバスに乗せる */
+  --card-border: 1px solid rgba(255, 255, 255, 0.14);
+  --card-shadow: none;
+  --on-hero: #FFFFFF;
+  --on-hero-accent: var(--accent);      /* 淡色のままだと暗いキャンバスで沈む */
+  --on-accent: #06121C;                 /* 明るいアクセントの上は濃色文字 */
+  --orb-opacity: 0;                     /* 装飾はリボンに任せる */
+  --panel-bar-width: 3px;
+
+  --aurora-scrim: rgba(6, 8, 14, 0.66); /* 本文スライドでリボンを後退させる暗幕 */
+  --on-canvas-head: #FFFFFF;            /* 見出し */
+  --on-canvas-strong: #FFFFFF;          /* 強調 */
+}
+
+/* ============ キャンバスとリボン ============ */
+/* 光のリボンは section の背景レイヤーとして重ねる。
+   Marpit は section の ::before を装飾用に押さえているので疑似要素は使えない。
+   隅に置いた楕円の輪郭だけを細く残し、角に沿う弧として描く。
+   中央は本文が乗る場所なので、弧が中心へ届かない半径に留めている。
+   ぼかしを使うとPDF（印刷経路）で失われるため、グラデーションだけで構成する */
+:root {
+  --aurora-ribbons:
+    radial-gradient(52% 42% at 106% -10%, var(--ribbon-1) 0%, transparent 62%),
+    radial-gradient(48% 38% at -8% 108%, var(--ribbon-2) 0%, transparent 62%),
+    radial-gradient(ellipse 40% 52% at 110% 108%, transparent 46.8%, var(--ribbon-3) 48%, transparent 49.4%),
+    radial-gradient(ellipse 48% 62% at 110% 108%, transparent 47%, rgba(255, 255, 255, 0.45) 48%, transparent 49%),
+    radial-gradient(ellipse 58% 74% at 110% 108%, transparent 46.8%, var(--ribbon-1) 48%, transparent 49.4%),
+    radial-gradient(ellipse 70% 88% at 110% 108%, transparent 46.9%, var(--ribbon-2) 48.1%, transparent 49.5%),
+    radial-gradient(ellipse 42% 54% at -10% -8%, transparent 46.8%, var(--ribbon-3) 48%, transparent 49.4%),
+    radial-gradient(ellipse 60% 76% at -10% -8%, transparent 46.9%, var(--ribbon-2) 48.1%, transparent 49.5%);
+}
+section,
+section.title,
+section.section,
+section.quote,
+section.closing {
+  position: relative;
+  overflow: hidden;
+  background: var(--aurora-ribbons), var(--canvas-bg, linear-gradient(125deg, #0B1220 0%, #101B2E 100%));
+  color: var(--gray-900);
+  /* Marp既定テーマは表のセル背景などを light-dark() で持つ。
+     明るい面のままだと反転後の淡色文字が乗って読めないので、dark 側に解決させる */
+  color-scheme: dark;
+}
+
+/* 文字だけで見せるスライドは弧を敷かず、地のグラデーションだけにする */
+section.title,
+section.section,
+section.lead,
+section.closing {
+  background: var(--canvas-bg);
+}
+
+/* 本文スライドは読ませる面なので、リボンの上に暗幕を1枚かけて後退させる
+   （引用スライドはリボンをそのまま見せる） */
+section.content {
+  background:
+    linear-gradient(var(--aurora-scrim), var(--aurora-scrim)),
+    var(--aurora-ribbons),
+    var(--canvas-bg);
+}
+
+strong { color: var(--on-canvas-strong); }
+section code { color: var(--accent); background: var(--gray-100); }
+/* base の pre code は --gray-50（反転後はほぼ透明）なので、本文と同じ明色に置く */
+section pre code { color: var(--gray-900); }
+section table th { background: rgba(255, 255, 255, 0.12); color: var(--white); }
+section blockquote { color: var(--gray-700); }
+
+/* ============ 見出し（濃色の --primary は暗背景で沈むので白に置く） ============ */
+section h1,
+section h2,
+section.content h1,
+section.section h1,
+section.lead h1 { color: var(--on-canvas-head); }
+section.lead h1 strong { color: var(--accent); }
+section.lead p { color: var(--gray-700); }
+
+/* ============ title ============ */
+section.title .orb { display: none; }
+/* eyebrow はアクセントの淡色のままだと暗いキャンバスに沈むので、
+   アクセント色のチップにして拾いやすくする */
+section.title .eyebrow {
+  align-self: flex-start;               /* 表紙は flex column。伸びないよう内容幅に留める */
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-pill);
+  padding: 6px 16px;
+  font-weight: 700;
+}
+section.title h2 { color: var(--on-primary-sub); font-weight: 400; }
+section.title .meta { color: var(--on-primary-muted); }
+section.title .accent,
+section.closing .accent,
+section.section .bar,
+section.content .head h1::after,
+section.content h1.bare::after {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+}
+
+/* ============ section（章扉）: 斜めの光の帯だけで見せる ============ */
+section.section .side {
+  width: 30%;
+  background: linear-gradient(200deg, var(--accent) 0%, var(--accent-2) 100%);
+  clip-path: polygon(88% 0, 94% 0, 40% 100%, 34% 100%);
+  opacity: 0.85;
+}
+section.section .chapter-num { color: var(--accent); }
+
+/* ============ quote / closing ============ */
+section.quote blockquote { color: var(--on-canvas-head); }
+section.quote blockquote::before { color: var(--accent); }
+section.closing .orb { display: none; }
+section.closing p { color: var(--on-primary-sub); }
+
+/* ============ content の部品 ============ */
+section.content .head .num {
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--accent);
+}
+section.content .card .badge,
+section.content .learn-item .n {
+  background: linear-gradient(140deg, var(--accent) 0%, var(--accent-2) 100%);
+  color: var(--on-accent);
+}
+section.content .card,
+section.content .issue-card,
+section.content .learn-item,
+section.content .flow-step,
+section.content.reference .ref-card {
+  border: var(--card-border);
+}
+section.content .panel-list li { border-left-color: var(--accent); }
+section.content .stat-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: var(--card-border);
+}
+section.content .stat-card .num { color: var(--accent); }
+section.content .stat-card .label { color: var(--gray-500); }
+section.content .compare-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--gray-200);
+}
+section.content .compare-card h3 { color: var(--gray-900); }
+section.content .compare-card.selected {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+section.content .compare-card.selected h3 { color: var(--white); }
+section.content .compare-card .tag {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--gray-700);
+}
+section.content .compare-card.selected .tag {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+section.content .issue-card .prob { color: var(--on-canvas-head); }
+section.content .flow-step .step-label {
+  color: var(--on-canvas-head);
+  border-bottom-color: var(--gray-200);
+}
+section.content .callout {
+  background: var(--accent-light);
+  border: 1px solid var(--accent);
+  color: var(--gray-900);
+}
+section.content .callout strong { color: var(--accent); }
+section.content .shot-full img,
+section.content .shot-split img { border-color: var(--gray-300); }

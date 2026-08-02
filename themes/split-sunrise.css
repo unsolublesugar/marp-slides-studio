@@ -1,0 +1,4 @@
+/* @theme split-sunrise */
+/* スプリット / オレンジ×アンバー: 左右分割。見出しと内容を対比させたい発表向け */
+@import "sunrise";
+@import "layout-split";

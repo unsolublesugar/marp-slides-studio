@@ -1,0 +1,125 @@
+/* @theme layout-minimal */
+/*
+ * レイアウトレイヤー: minimal（余白と罫線）
+ * 濃色の面・グラデーション・装飾をすべて外し、細い罫線と余白だけで構成する。
+ * 単体では使わず、カラーテーマの後に @import して重ねる:
+ *   @import "business-slate"; @import "layout-minimal";
+ * base.css と同じセレクタで上書きするため、必ず base より後に読み込むこと。
+ */
+
+/* ============ title: 白地・罫線のみ ============ */
+section.title {
+  background: var(--white);
+  padding: 0 0 0 0;
+}
+section.title .orb { display: none; }
+section.title .eyebrow { color: var(--accent); }
+section.title h1 {
+  color: var(--primary);
+  font-size: 2.1em;
+}
+section.title h2 { color: var(--gray-500); }
+section.title .accent {
+  width: 220px;
+  height: 2px;
+}
+section.title .meta { color: var(--gray-500); }
+
+/* ============ section: 白地に章番号と細い罫 ============ */
+section.section {
+  background: var(--white);
+  align-items: flex-start;
+  text-align: left;
+  padding: 0 110px;
+}
+section.section .side { display: none; }
+section.section .chapter-num {
+  font-size: 1.1em;
+  color: var(--gray-500);
+}
+section.section h1 {
+  max-width: 900px;
+  border-top: 1px solid var(--gray-300);
+  padding-top: 0.6em;
+}
+section.section .bar {
+  width: 44px;
+  height: 2px;
+}
+
+/* ============ content: 見出しの下に一本罫 ============ */
+section.content .head {
+  border-bottom: 1px solid var(--gray-300);
+  padding-bottom: 18px;
+  margin-bottom: 28px;
+}
+section.content h1 {
+  font-size: 1.4em;
+  padding-bottom: 0;
+}
+section.content .head h1::after,
+section.content h1.bare::after { display: none; }
+section.content .head .num {
+  width: 44px; height: 44px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  font-size: 1.1em;
+}
+
+/* ---- 面を持つ部品は地色を外して罫線だけにする ---- */
+section.content .card,
+section.content .issue-card,
+section.content .learn-item,
+section.content .flow-step {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--gray-200);
+  border-radius: 0;
+  box-shadow: none;
+}
+section.content .panel-list li {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding-left: 16px;
+}
+section.content .card .badge,
+section.content .learn-item .n {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--gray-300);
+}
+section.content .stat-card {
+  background: transparent;
+  border: 1px solid var(--gray-300);
+}
+section.content .stat-card .num { color: var(--primary); }
+section.content .stat-card .label { color: var(--gray-500); }
+section.content .callout {
+  border: none;
+  border-left: 2px solid var(--accent);
+  border-radius: 0;
+  background: transparent;
+}
+section.content.reference .ref-card {
+  background: transparent;
+  border: 1px solid var(--gray-200);
+  border-radius: 0;
+}
+section.quote { background: var(--white); }
+
+/* ============ closing: 白地に一言だけ ============ */
+section.closing {
+  background: var(--white);
+}
+section.closing .orb { display: none; }
+section.closing h1 {
+  color: var(--primary);
+  font-size: 1.8em;
+}
+section.closing p { color: var(--gray-700); }
+section.closing a { color: var(--accent); }
+section.closing .accent {
+  width: 220px;
+  height: 2px;
+}

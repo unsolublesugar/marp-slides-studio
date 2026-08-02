@@ -1,0 +1,89 @@
+/* @theme layout-band */
+/*
+ * レイアウトレイヤー: band（帯）
+ * 見出しを全幅のカラーバンドにして、本文は白地に置く構成。
+ * 単体では使わず、カラーテーマの後に @import して重ねる:
+ *   @import "navy"; @import "layout-band";
+ * base.css と同じセレクタで上書きするため、必ず base より後に読み込むこと。
+ *
+ * 注意（Marp固有の制約）:
+ *   - `section > :first-child` に `margin-top: 0 !important` が当たるため、
+ *     先頭要素を負のマージンで全幅にはできない。sectionのpaddingを0にして
+ *     .head / .body 側にpaddingを持たせる形で全幅にする。
+ *   - ページ番号 `section::after` は `padding: inherit` で位置が決まるので、
+ *     sectionのpaddingを変えたら::after側にも同じ余白を指定し直す。
+ */
+
+/* ============ title: 上部に帯、白地に濃色タイトル ============ */
+section.title {
+  background: var(--white);
+  justify-content: flex-start;
+}
+section.title .orb { display: none; }
+section.title .eyebrow {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 auto 0;
+  padding: 34px 100px;
+  background: var(--primary);
+  color: var(--white);
+}
+section.title h1 {
+  color: var(--primary);
+  margin: 0 100px 0.3em 100px;
+}
+section.title h2 { color: var(--gray-700); }
+section.title .accent {
+  width: 120px;
+  margin: 1.2em 0 auto 100px;
+}
+section.title .meta { color: var(--gray-500); }
+
+/* ============ section: 全面を濃色にして左寄せ ============ */
+section.section {
+  background: var(--primary);
+  align-items: flex-start;
+  text-align: left;
+  padding: 0 110px;
+}
+section.section .side { display: none; }
+section.section h1 {
+  color: var(--white);
+  max-width: 900px;
+}
+section.section .chapter-num { color: var(--accent); }
+
+/* ============ content: 見出しを全幅の帯に ============ */
+section.content {
+  padding: 0 0 50px 0;
+  justify-content: flex-start;
+}
+section.content::after { padding: 0 72px 50px 0; }
+section.content .head {
+  margin: 0 0 32px 0;
+  padding: 26px 72px;
+  min-height: 112px;
+  box-sizing: border-box;
+  background: var(--primary);
+}
+section.content .body,
+section.content > .ref-card { padding-left: 72px; padding-right: 72px; }
+section.content .head h1,
+section.content h1.bare { color: var(--white); }
+section.content .head h1::after,
+section.content h1.bare::after { display: none; }
+section.content .head .num {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--white);
+}
+section.content.reference .head { justify-content: center; }
+
+/* ============ closing: 白地＋下部の帯 ============ */
+/* 疑似要素はMarpの描画経路で落ちることがあるため、背景のハードストップで帯を作る */
+section.closing {
+  background: linear-gradient(to top, var(--primary) 0 130px, var(--white) 130px 100%);
+}
+section.closing .orb { display: none; }
+section.closing h1 { color: var(--primary); }
+section.closing p { color: var(--gray-700); }
+section.closing a { color: var(--accent); }

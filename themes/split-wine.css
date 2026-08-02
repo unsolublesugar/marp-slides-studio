@@ -1,0 +1,4 @@
+/* @theme split-wine */
+/* スプリット / ワインレッド×コーラル: 左右分割。見出しと内容を対比させたい発表向け */
+@import "wine";
+@import "layout-split";

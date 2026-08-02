@@ -1,0 +1,22 @@
+node_modules/
+.DS_Store
+
+# Claude Code のローカル設定（ユーザー固有）
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# レイアウト検証用のスライド画像（成果物はhtml/pdfのみコミット）
+slides/*/png/
+template/png/
+
+# 描画確認用のスクラッチデッキ
+slides/_pdftest/
+
+# README用スクショ生成の作業ディレクトリ
+.docs-shot/
+
+# テーマギャラリーの生成物
+.gallery/
+
+# デッキのテーマ切替プレビューの生成物
+slides/*/.theme-preview/

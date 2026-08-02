@@ -1,0 +1,20 @@
+/* @theme wine */
+/* スタンダード / ワインレッド×コーラル: 情熱的・エモーショナルな題材向け */
+@import "base";
+
+:root {
+  --primary: #6B2437;
+  --primary-dark: #4A1826;
+  --primary-bright: #84304A;
+  --accent: #D96C57;
+  --accent-light: #FBEFEA;
+  --on-primary-sub: #DFC1C9;
+  --on-primary-muted: #C7A2AD;
+  --on-primary-faint: #E9CBD4;
+  --accent-glow: rgba(217, 108, 87, 0.35);
+  --shadow-color: rgba(107, 36, 55, 0.15);
+
+  /* 白地に乗る波の色（layout-wave が使う） */
+  --wave-1: #B04A5E;
+  --wave-2: #E5A9B4;
+}

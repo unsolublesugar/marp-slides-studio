@@ -1,0 +1,21 @@
+/* @theme forest */
+/* スタンダード / フォレストグリーン×リーフ: 落ち着き・サステナブルな題材向け */
+@import "base";
+
+:root {
+  --primary: #1E4D38;
+  --primary-dark: #123527;
+  --primary-bright: #2A664C;
+  --accent: #6FA84C;
+  --accent-ink: #639644;      /* 淡色地の章番号用 */
+  --accent-light: #EFF5E9;
+  --on-primary-sub: #BFD8C9;
+  --on-primary-muted: #9CBFAC;
+  --on-primary-faint: #C9E1D3;
+  --accent-glow: rgba(111, 168, 76, 0.35);
+  --shadow-color: rgba(30, 77, 56, 0.15);
+
+  /* 白地に乗る波の色（layout-wave が使う） */
+  --wave-1: #4F9367;
+  --wave-2: #AFD79A;
+}

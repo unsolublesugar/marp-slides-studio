@@ -1,0 +1,36 @@
+/* @theme pastel-sage */
+/* パステル / セージグリーン×プラム: 淡いグリーンで穏やかに。ふりかえり・共有会向け */
+@import "base";
+
+:root {
+  /* ---- トーン: pastel（淡色の面・ヘアライン・影なし。表紙も淡色） ---- */
+  --weight-head: 700;
+  --weight-title: 800;
+  --radius-lg: 18px;
+  --radius-md: 16px;
+  --radius-sm: 14px;
+  --radius-xs: 12px;
+  --surface: var(--white);
+  --card-border: 1px solid #DDE7DC;
+  --card-shadow: none;
+  --panel-bar-width: 5px;
+
+  /* ---- カラー: セージグリーン×プラム ---- */
+  --primary: #3F6B4C;
+  --primary-dark: #294A34;
+  --primary-bright: #558A64;
+  --accent: #9B5A7A;
+  --accent-light: #F7EDF2;
+  --on-primary-sub: var(--gray-700);
+  --on-primary-muted: var(--gray-500);
+  --on-primary-faint: #D2E4D6;
+  --accent-glow: rgba(155, 90, 122, 0.25);
+  --shadow-color: rgba(63, 107, 76, 0.12);
+
+  --hero-bg: linear-gradient(135deg, #E9F2EA 0%, #F9FBF8 55%, #F5EDF1 100%);
+  --on-hero: var(--primary);
+  --on-hero-accent: var(--accent);
+  --bg-alt: #F3F8F3;
+  --side-bg: linear-gradient(160deg, #DEEBDF 0%, #C8DCCB 100%);
+  --code-bg: #1A3222;
+}

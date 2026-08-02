@@ -1,0 +1,21 @@
+/* @theme charcoal */
+/* スタンダード / チャコール×アンバー: モノトーン基調でシャープな題材向け */
+@import "base";
+
+:root {
+  --primary: #2E3138;
+  --primary-dark: #1E2126;
+  --primary-bright: #3D4149;
+  --accent: #E8A13D;
+  --accent-ink: #BF7917;      /* 淡色地の章番号用（明るいアンバーのまま置くと沈む） */
+  --accent-light: #FBF2E2;
+  --on-primary-sub: #C8CCD2;
+  --on-primary-muted: #A6ABB3;
+  --on-primary-faint: #D5D9DF;
+  --accent-glow: rgba(232, 161, 61, 0.30);
+  --shadow-color: rgba(30, 33, 38, 0.18);
+
+  /* 白地に乗る波の色（layout-wave が使う）。地のモノトーン＋アクセントのアンバー */
+  --wave-1: #565B64;
+  --wave-2: #F0BE72;
+}

@@ -1,0 +1,30 @@
+/* @theme aurora-blue */
+/* オーロラ / 濃紺×シアン×グリーン: テックカンファレンス・製品紹介など、明るく先進的に見せたい場向け */
+/* 暗い全面キャンバスで使う前提の値（--canvas-bg / --ribbon-*）も持つ。
+   実際に暗くするのは themes/layout-aurora.css で、単体で使えば通常の明るいテーマになる */
+@import "base";
+
+:root {
+  /* ---- カラー: 濃紺×シアン×グリーン ---- */
+  --primary: #14487A;
+  --primary-dark: #06172B;
+  --primary-bright: #2E8FD6;
+  --accent: #2BC6C2;
+  --accent-2: #45DD8C;
+  --accent-ink: #219996;       /* 単体（明るいキャンバス）で使うときの章番号用 */
+  --accent-light: rgba(43, 198, 194, 0.16);
+  --on-hero-accent: var(--accent);  /* 既定の accent-light は半透明tintのため、濃色表紙のラベルが沈む */
+  --on-primary-sub: #BBD3E4;
+  --on-primary-muted: #9BB3C7;
+  --on-primary-faint: #CFE3F1;
+  --accent-glow: rgba(43, 198, 194, 0.32);
+  --shadow-color: rgba(0, 0, 0, 0.45);
+  --bg-alt: #F2F7FB;
+  --code-bg: #06172B;
+
+  /* ---- 暗いキャンバスの地とリボン（layout-aurora が使う） ---- */
+  --canvas-bg: linear-gradient(125deg, #04121F 0%, #0A2440 48%, #0B3556 100%);
+  --ribbon-1: rgba(56, 163, 236, 0.78);
+  --ribbon-2: rgba(43, 208, 202, 0.62);
+  --ribbon-3: rgba(69, 221, 140, 0.48);
+}

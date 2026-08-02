@@ -1,0 +1,37 @@
+/* @theme pastel-sky */
+/* パステル / ペールブルー×コーラル: 淡い背景で明るく軽やかに。読ませる資料・オンライン発表向け */
+@import "base";
+
+:root {
+  /* ---- トーン: pastel（淡色の面・ヘアライン・影なし。表紙も淡色） ---- */
+  --weight-head: 700;
+  --weight-title: 800;
+  --radius-lg: 18px;
+  --radius-md: 16px;
+  --radius-sm: 14px;
+  --radius-xs: 12px;
+  --surface: var(--white);
+  --card-border: 1px solid #DCE8F2;
+  --card-shadow: none;
+  --panel-bar-width: 5px;
+
+  /* ---- カラー: ペールブルー×コーラル ---- */
+  --primary: #2F6690;
+  --primary-dark: #1E4763;
+  --primary-bright: #4A87B5;
+  --accent: #C94E38;
+  --accent-light: #FDEDE9;
+  --on-primary-sub: var(--gray-700);   /* 淡色の表紙に乗るサブテキスト */
+  --on-primary-muted: var(--gray-500);
+  --on-primary-faint: #CFE3F0;         /* 濃色の数値カードに乗るラベル */
+  --accent-glow: rgba(201, 78, 56, 0.28);
+  --shadow-color: rgba(47, 102, 144, 0.12);
+
+  /* 表紙・締めを淡色にして、文字だけ濃色にする */
+  --hero-bg: linear-gradient(135deg, #E7F1F9 0%, #F8FBFD 55%, #FDF2EE 100%);
+  --on-hero: var(--primary);
+  --on-hero-accent: var(--accent);
+  --bg-alt: #F2F7FB;
+  --side-bg: linear-gradient(160deg, #DCEBF6 0%, #C7DEEE 100%);
+  --code-bg: #133044;
+}

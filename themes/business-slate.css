@@ -1,0 +1,36 @@
+/* @theme business-slate */
+/* ビジネス / スレートグレー×ティール: 技術説明・設計レビューなど、落ち着いて数字を語る場向け */
+@import "base";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap');
+
+:root {
+  /* ---- トーン: business（角ゴシック・角丸小さめ・ヘアライン・装飾控えめ） ---- */
+  --font-body: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --weight-head: 700;
+  --weight-title: 800;
+  --letter-head: -0.01em;
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  --radius-sm: 6px;
+  --radius-xs: 4px;
+  --radius-chip: 4px;
+  --radius-pill: 4px;
+  --radius-bar: 1px;
+  --panel-bar-width: 3px;
+  --card-border: 1px solid var(--gray-200);
+  --orb-opacity: 0.5;
+  --hero-bg: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+
+  /* ---- カラー: スレートグレー×ティール ---- */
+  --primary: #37474F;
+  --primary-dark: #253238;
+  --primary-bright: #48606B;
+  --accent: #00798C;
+  --accent-light: #E4F2F4;
+  --on-primary-sub: #C6D0D5;
+  --on-primary-muted: #A7B4BB;
+  --on-primary-faint: #D7DEE2;
+  --accent-glow: rgba(0, 121, 140, 0.30);
+  --shadow-color: rgba(37, 71, 79, 0.15);
+  --code-bg: #1C262B;          /* primary-dark だとハイライトが6:1を割るため個別指定 */
+}

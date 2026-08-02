@@ -1,0 +1,33 @@
+{
+  "name": "marp-slides-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marp slide studio with color themes, layout patterns, and AI agent workflows",
+  "license": "MIT",
+  "author": "unsolublesugar",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unsolublesugar/marp-slides-studio.git"
+  },
+  "keywords": [
+    "marp",
+    "marp-cli",
+    "slides",
+    "presentation",
+    "themes",
+    "lightning-talk",
+    "claude-code"
+  ],
+  "scripts": {
+    "new": "bash scripts/new-deck.sh",
+    "build": "bash scripts/build.sh",
+    "preview": "marp -s --theme-set themes --html slides",
+    "docs-shot": "node scripts/docs-shot.mjs",
+    "gallery": "node scripts/theme-gallery.mjs",
+    "theme-preview": "node scripts/theme-preview.mjs",
+    "theme-check": "node scripts/theme-check.mjs"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.2.3"
+  }
+}

@@ -1,0 +1,25 @@
+/* @theme coral */
+/* スタンダード / コーラル×ピーチ: やわらかい暖色。ふりかえり・コミュニティ・ライトな共有会向け */
+@import "base";
+
+:root {
+  /* ---- カラー: コーラル×ピーチ ---- */
+  --primary: #BE404A;
+  --primary-dark: #8E2F3A;
+  --primary-bright: #E4736F;
+  --accent: #F2994A;
+  --accent-2: #F27C7C;
+  --accent-ink: #C4701C;       /* 淡色地の章番号用 */
+  --accent-light: #FDEEE6;
+  --on-primary-sub: #F6D3CF;
+  --on-primary-muted: #F3CCC8;
+  --on-primary-faint: #FCEDEB;
+  --accent-glow: rgba(242, 153, 74, 0.32);
+  --shadow-color: rgba(142, 47, 58, 0.16);
+  --bg-alt: #FFF7F4;
+  --code-bg: #3A141A;          /* --primary-dark が明るく、--code-* が6:1を割るため個別指定 */
+
+  /* 暖色の面に乗る波の色（layout-wave が使う） */
+  --wave-1: #ED6A61;
+  --wave-2: #FBBE93;
+}

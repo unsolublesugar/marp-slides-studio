@@ -1,0 +1,33 @@
+/* @theme pop-soda */
+/* ポップ / ソーダブルー×オレンジ: ハンズオン・入門解説など、明るくテンポよく進める場向け */
+@import "base";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;800;900&display=swap');
+
+:root {
+  /* ---- トーン: pop（極太丸ゴシック・ハードシャドウ・ビビッド） ---- */
+  --font-body: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif;
+  --weight-head: 800;
+  --weight-title: 900;
+  --radius-lg: 20px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+  --radius-xs: 12px;
+  --radius-chip: 8px;
+  --radius-bar: 999px;
+  --panel-bar-width: 6px;
+  --card-shadow: 5px 5px 0 rgba(28, 95, 216, 0.16);
+  --hero-bg: linear-gradient(120deg, var(--primary-dark) 0%, var(--primary) 55%, var(--primary-bright) 100%);
+
+  /* ---- カラー: ソーダブルー×オレンジ ---- */
+  --primary: #1C5FD8;
+  --primary-dark: #12409A;
+  --primary-bright: #2E7BF0;
+  --accent: #EE5A00;
+  --accent-light: #FFEDE0;
+  --on-primary-sub: #C3D8FA;
+  --on-primary-muted: #A7C4F4;
+  --on-primary-faint: #D7E6FC;
+  --accent-glow: rgba(238, 90, 0, 0.35);
+  --shadow-color: rgba(18, 64, 154, 0.20);
+  --code-bg: #08245A;          /* primary-dark だとハイライトが6:1を割るため個別指定 */
+}

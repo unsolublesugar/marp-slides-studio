@@ -1,0 +1,36 @@
+/* @theme business-azure */
+/* ビジネス / コーポレートブルー×オレンジ: 提案・報告・社外プレゼンなど、堅実に伝える場向け */
+@import "base";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap');
+
+:root {
+  /* ---- トーン: business（角ゴシック・角丸小さめ・ヘアライン・装飾控えめ） ---- */
+  --font-body: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --weight-head: 700;
+  --weight-title: 800;
+  --letter-head: -0.01em;
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  --radius-sm: 6px;
+  --radius-xs: 4px;
+  --radius-chip: 4px;
+  --radius-pill: 4px;
+  --radius-bar: 1px;
+  --panel-bar-width: 3px;
+  --card-border: 1px solid var(--gray-200);
+  --orb-opacity: 0.5;
+  --hero-bg: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+
+  /* ---- カラー: コーポレートブルー×オレンジ ---- */
+  --primary: #0F4C81;
+  --primary-dark: #0A3459;
+  --primary-bright: #1766A8;
+  --accent: #C75B12;
+  --accent-light: #FBEEE4;
+  --on-primary-sub: #B6CDE1;
+  --on-primary-muted: #97B4CD;
+  --on-primary-faint: #C9DCEC;
+  --accent-glow: rgba(199, 91, 18, 0.30);
+  --shadow-color: rgba(15, 76, 129, 0.15);
+  --code-bg: #082944;          /* primary-dark だとハイライトが6:1を割るため個別指定 */
+}

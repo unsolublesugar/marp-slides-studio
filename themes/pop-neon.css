@@ -1,0 +1,34 @@
+/* @theme pop-neon */
+/* ポップ / ホットピンク×ライム: イベント・アイスブレイク・宣伝など、勢いよく目を引きたい場向け */
+@import "base";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;800;900&display=swap');
+
+:root {
+  /* ---- トーン: pop（極太丸ゴシック・ハードシャドウ・ビビッド） ---- */
+  --font-body: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif;
+  --weight-head: 800;
+  --weight-title: 900;
+  --radius-lg: 20px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+  --radius-xs: 12px;
+  --radius-chip: 8px;
+  --radius-bar: 999px;
+  --panel-bar-width: 6px;
+  --card-shadow: 5px 5px 0 rgba(214, 36, 110, 0.16);
+  --hero-bg: linear-gradient(120deg, var(--primary-dark) 0%, var(--primary) 55%, var(--primary-bright) 100%);
+
+  /* ---- カラー: ホットピンク×ライム ---- */
+  --primary: #CE1F68;
+  --primary-dark: #971149;
+  --primary-bright: #F0428A;
+  --accent: #43A600;
+  --accent-ink: #3F9C00;      /* 淡色地の章番号用 */
+  --accent-light: #EFF8E4;
+  --on-primary-sub: #F9C8DD;
+  --on-primary-muted: #F5C7DA;
+  --on-primary-faint: #FEF6FA;
+  --accent-glow: rgba(67, 166, 0, 0.35);
+  --shadow-color: rgba(151, 17, 73, 0.20);
+  --code-bg: #420820;          /* primary-dark だとハイライトが6:1を割るため個別指定 */
+}

@@ -1,0 +1,908 @@
+/* @theme base */
+/*
+ * ベーステーマ（カラー: navy）
+ * カラーバリエーションは themes/*.css がこのテーマを @import し、
+ * :root の変数だけを上書きする。レイアウトはすべてここに集約する。
+ */
+@import "default";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;900&display=swap');
+
+:root {
+  /* ---- カラーパレット（バリエーションはここだけ上書きする） ---- */
+  --primary: #1B4565;          /* 主要色: 見出し・濃色ブロック */
+  --primary-dark: #12314A;     /* 主要色の暗部: グラデーション終端 */
+  --primary-bright: #235A80;   /* 主要色の明部: グラデーション始端 */
+  --accent: #3E9BA4;           /* アクセント色: バー・番号・リンク */
+  --accent-2: #3E9BA4;         /* 第2アクセント: グラデーションやリボンの対向色 */
+  --accent-ink: var(--accent); /* 文字に使うアクセント。--accent が明るいテーマ（pop系・
+                                  charcoal など）は、淡色地で3:1を保てる濃色を個別に指定する */
+  --accent-light: #EAF4F5;     /* アクセント色の淡背景 */
+  --on-primary-sub: #B9CBD9;   /* 濃色背景上のサブテキスト */
+  --on-primary-muted: #9FB4C4; /* 濃色背景上の控えめテキスト */
+  --on-primary-faint: #BFD6E3; /* 濃色背景上のラベル */
+  --accent-glow: rgba(62, 155, 164, 0.35); /* タイトル装飾オーブ */
+  --shadow-color: rgba(27, 69, 101, 0.15); /* 画像シャドウ */
+
+  /* ---- 波の色（layout-wave が使う装飾面。文字は乗らない） ----
+     既定は navy に合わせた寒色。暖色テーマは各自で上書きする */
+  --wave-1: #2C7A94;
+  --wave-2: #8FCAD1;
+
+  /* ---- コードハイライト（濃色 pre の上に乗る色） ----
+     背景の濃色と色相がぶつからないよう、寒色を避けて明度を上げてある。
+     全バリエーション共通で 6:1 以上のコントラストを確保する */
+  --code-string: #98E58C;      /* 文字列リテラル */
+  --code-keyword: #FF8FA3;     /* キーワード・組み込み */
+  --code-number: #FFC46B;      /* 数値・定数 */
+  --code-entity: #D8B4FE;      /* 関数名・型 */
+  --code-comment: #B0BEC5;     /* コメント */
+  --code-bg: var(--primary-dark); /* コードパネルの地色。--primary-dark が明るいテーマ
+                                     （pop系など）は、上の5色が6:1を割らない暗色を個別に指定する */
+
+  /* ---- トーントークン（スライドの「雰囲気」を決める） ----
+     既定値は標準トーン（navy / wine / forest / charcoal が使う値）。
+     casual / pop / chic / business 系テーマはここも上書きする。
+     レイアウト（余白・グリッド・サイズ）は不変で、書体・角丸・影だけが変わる */
+  --font-body: 'M PLUS 1p', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --font-head: var(--font-body);
+  --weight-head: 700;          /* 見出し */
+  --weight-title: 900;         /* 表紙・締め・leadの特大見出し */
+  --letter-head: normal;       /* 見出しの字間 */
+  --letter-title: normal;      /* 特大見出しの字間 */
+
+  --radius-lg: 16px;           /* 比較カード・参考カード */
+  --radius-md: 14px;           /* カード・数値カード・コールアウト */
+  --radius-sm: 12px;           /* 問題カード・フロー・コードブロック・画像 */
+  --radius-xs: 10px;           /* 箇条書きパネル・引用・まとめ項目 */
+  --radius-chip: 6px;          /* インラインコード */
+  --radius-pill: 999px;        /* タグ・URLボタン */
+  --radius-bar: 3px;           /* アクセントバー */
+  --stack-gap: 20px;           /* .body 内に部品を縦に積んだときの間隔 */
+  --middle-pad-bottom: 88px;   /* `content middle` の下側余白。この半分だけ中身が上がる
+                                  （見出しの高さぶんの沈み込みを打ち消す） */
+
+  --surface: var(--gray-50);   /* カード・パネルの地色 */
+  --bg-alt: var(--gray-50);    /* 章扉・引用スライドの全面地色 */
+  --card-shadow: none;         /* カードの影（ポップ系はハードシャドウ） */
+  --card-border: none;         /* カードの枠線（シック系はヘアライン） */
+  --panel-bar-width: 4px;      /* panel-list 左のアクセントバー */
+
+  --on-accent: var(--white);   /* アクセント色を背景にしたときの文字色。
+                                  彩度の高いアクセントの上に小さい文字を置くと沈むため、
+                                  base では使っていない。layout-aurora のように
+                                  アクセント地のチップを持つレイヤー向けのトークン */
+  --on-hero: var(--white);         /* 表紙・締めの大見出しの色（淡色テーマは濃色にする） */
+  --on-hero-accent: var(--accent-light); /* 同・ラベルとリンクの色 */
+  --orb-opacity: 1;            /* 表紙・締めの装飾オーブの濃さ */
+  --hero-bg: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 65%, var(--primary-bright) 100%);
+  --side-bg: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
+
+  /* ---- ニュートラル（全バリエーション共通） ---- */
+  --gray-900: #212529;
+  --gray-700: #495057;
+  --gray-500: #6F777F;         /* 白地で4.5:1。キャプション・ページ番号・章番号に使う */
+  --gray-300: #CED4DA;
+  --gray-200: #E9ECEF;
+  --gray-100: #F1F3F5;
+  --gray-50: #F8F9FA;
+  --white: #FFFFFF;
+}
+
+section {
+  font-family: var(--font-body);
+  color: var(--gray-900);
+  padding: 56px 72px;
+  background: var(--white);
+}
+strong { color: var(--primary); font-weight: var(--weight-head); }
+a { color: var(--accent); }
+
+/* ---- ページ番号（paginate: true 時） ---- */
+section::after {
+  font-size: 0.6em;
+  color: var(--gray-500);
+}
+section.title::after,
+section.section::after,
+section.closing::after { display: none; }
+
+/* ---- クラスなしスライドの素のMarkdown要素 ---- */
+section h1 {
+  font-family: var(--font-head);
+  font-size: 1.65em;
+  font-weight: var(--weight-head);
+  letter-spacing: var(--letter-head);
+  color: var(--primary);
+  line-height: 1.4;
+}
+section h2 {
+  font-family: var(--font-head);
+  color: var(--primary);
+  font-weight: var(--weight-head);
+  letter-spacing: var(--letter-head);
+}
+section > ul li, section > ol li { line-height: 1.7; }
+section > ul li::marker { color: var(--accent); }
+section table {
+  font-size: 0.85em;
+  border-collapse: collapse;
+}
+section table th {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 10px 18px;
+}
+section table td {
+  border: none;
+  border-bottom: 1px solid var(--gray-200);
+  padding: 10px 18px;
+}
+section table tr:nth-child(even) td { background: var(--gray-50); }
+section code {
+  background: var(--gray-100);
+  color: var(--primary-dark);
+  font-weight: 600;
+  padding: 0.15em 0.45em;
+  border-radius: var(--radius-chip);
+}
+section pre {
+  background: var(--code-bg);
+  border-radius: var(--radius-sm);
+  padding: 18px 22px;
+}
+section pre code {
+  background: transparent;
+  color: var(--gray-50);
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+/* Marp既定のハイライト色は明背景向けで、濃色preの上だと文字列などが潰れる。
+   prettylightsの変数を濃色背景向けに差し替える。
+   既定値は light-dark() なので color-scheme で dark 側に解決させ、
+   個別に指定していないトークン（diffの追加・削除行など）も暗背景向けにする */
+section pre {
+  color-scheme: dark;
+  --color-prettylights-syntax-string: var(--code-string);
+  --color-prettylights-syntax-constant: var(--code-number);
+  --color-prettylights-syntax-keyword: var(--code-keyword);
+  --color-prettylights-syntax-entity: var(--code-entity);
+  --color-prettylights-syntax-entity-tag: var(--code-string);
+  --color-prettylights-syntax-variable: var(--code-number);
+  --color-prettylights-syntax-comment: var(--code-comment);
+  --color-prettylights-syntax-storage-modifier-import: var(--gray-50);
+}
+section blockquote {
+  border-left: var(--panel-bar-width) solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  padding: 14px 20px;
+  color: var(--gray-700);
+}
+
+/* ============ title slide ============ */
+section.title {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  background: var(--hero-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section.title .eyebrow {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 0 100px;
+  color: var(--on-hero-accent);
+  font-size: 0.9em;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+}
+section.title .eyebrow .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+section.title h1 {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-head);
+  font-size: 2.3em;
+  font-weight: var(--weight-title);
+  letter-spacing: var(--letter-title);
+  color: var(--on-hero);
+  margin: 0.35em 0 0.3em 100px;
+  line-height: 1.35;
+  max-width: 85%;
+}
+section.title h2 {
+  position: relative;
+  z-index: 2;
+  font-size: 1.15em;
+  font-weight: 400;
+  color: var(--on-primary-sub);
+  margin: 0 0 0 100px;
+}
+section.title .accent {
+  position: relative;
+  z-index: 2;
+  width: 70px;
+  height: 5px;
+  background: var(--accent);
+  margin: 1.6em 0 0 100px;
+  border-radius: var(--radius-bar);
+}
+section.title .meta {
+  position: absolute;
+  right: 90px;
+  bottom: 55px;
+  z-index: 2;
+  color: var(--on-primary-muted);
+  text-align: right;
+  font-size: 0.85em;
+  line-height: 1.7;
+}
+section.title .orb {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  opacity: var(--orb-opacity);
+}
+section.title .orb.a {
+  width: 520px; height: 520px;
+  right: -160px; top: -180px;
+  background: radial-gradient(circle at 30% 30%, var(--accent-glow), rgba(255,255,255,0) 70%);
+}
+section.title .orb.b {
+  width: 380px; height: 380px;
+  right: 60px; bottom: -200px;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06), rgba(255,255,255,0) 70%);
+}
+
+/* ============ section (chapter) slide ============ */
+section.section {
+  background: var(--bg-alt);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0 0 0 110px;
+}
+section.section .chapter-num {
+  font-size: 1.3em;
+  color: var(--accent-ink);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.6em 0;
+}
+section.section h1 {
+  font-family: var(--font-head);
+  font-size: 1.8em;
+  font-weight: var(--weight-head);
+  letter-spacing: var(--letter-head);
+  color: var(--primary);
+  margin: 0;
+  line-height: 1.5;
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+}
+section.section .bar {
+  width: 90px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: var(--radius-bar);
+  margin-top: 1em;
+}
+section.section .side {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 26%;
+  background: var(--side-bg);
+  clip-path: polygon(38% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+/* ============ lead slide (大きなメッセージ1つ) ============ */
+section.lead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+section.lead h1 {
+  font-family: var(--font-head);
+  font-size: 1.9em;
+  font-weight: var(--weight-title);
+  letter-spacing: var(--letter-title);
+  color: var(--primary);
+  line-height: 1.6;
+  margin: 0;
+}
+section.lead h1 strong {
+  color: var(--accent);
+}
+section.lead p {
+  margin-top: 1.2em;
+  color: var(--gray-700);
+  font-size: 1em;
+}
+
+/* ============ quote slide ============ */
+section.quote {
+  background: var(--bg-alt);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+section.quote blockquote {
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-width: 860px;
+  font-family: var(--font-head);
+  font-size: 1.4em;
+  font-weight: var(--weight-head);
+  line-height: 1.8;
+  color: var(--primary);
+  position: relative;
+}
+section.quote blockquote::before {
+  content: "\201C";
+  display: block;
+  font-size: 2.6em;
+  line-height: 0.6;
+  color: var(--accent);
+  margin-bottom: 0.25em;
+}
+section.quote .cite {
+  margin-top: 1.6em;
+  font-size: 0.85em;
+  color: var(--gray-500);
+}
+
+/* ============ closing slide ============ */
+section.closing {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  background: var(--hero-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+section.closing h1 {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-head);
+  font-size: 2.1em;
+  font-weight: var(--weight-title);
+  letter-spacing: var(--letter-title);
+  color: var(--on-hero);
+  margin: 0;
+}
+section.closing p {
+  position: relative;
+  z-index: 2;
+  color: var(--on-primary-sub);
+  margin-top: 1.2em;
+  line-height: 1.9;
+}
+section.closing a { color: var(--on-hero-accent); }
+section.closing .accent {
+  position: relative;
+  z-index: 2;
+  width: 70px;
+  height: 5px;
+  background: var(--accent);
+  margin: 1.4em auto 0 auto;
+  border-radius: var(--radius-bar);
+}
+section.closing .orb {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  opacity: var(--orb-opacity);
+}
+section.closing .orb.a {
+  width: 520px; height: 520px;
+  left: -180px; bottom: -220px;
+  background: radial-gradient(circle at 60% 40%, var(--accent-glow), rgba(255,255,255,0) 70%);
+}
+
+/* ============ content slide: shared header ============ */
+section.content {
+  padding: 56px 72px 50px 72px;
+  display: flex;
+  flex-direction: column;
+}
+section.content .head {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 0.9em;
+  flex: none;
+}
+section.content .head .num {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 1.3em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section.content h1 {
+  font-family: var(--font-head);
+  font-size: 1.65em;
+  font-weight: var(--weight-head);
+  letter-spacing: var(--letter-head);
+  color: var(--primary);
+  margin: 0;
+  line-height: 1.4;
+  position: relative;
+  padding-bottom: 0.3em;
+}
+section.content .head h1::after,
+section.content h1.bare::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 56px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: var(--radius-bar);
+}
+section.content .body {
+  flex: auto;
+}
+/* 部品を縦に積んだときの間隔。箇条書きの上下も含めてここで一元管理する。
+   自前で gap を持つ横並びレイアウト（下の .body 変種）には効かせないので、
+   .body に新しいレイアウトクラスを足したらこの :not() にも追加する */
+section.content .body:not(.two-col):not(.compare):not(.issue-grid):not(.shot-split):not(.shot-full) > * + * {
+  margin-top: var(--stack-gap);
+}
+
+/* ---- 上下中央寄せ（`_class: content middle`） ----
+   .body は flex: auto で残り高さを常に占めるので、中身が少ないと下側だけ空く。
+   このオプションは .body の中身を見出し下の領域で上下中央に寄せる（見出しは上のまま）。
+   .body が自前で display を持つ変種（two-col / compare / issue-grid）はグリッドの
+   まま align-content で寄せる。shot-* はもとから中央寄せなので対象外。
+   .body に新しいレイアウトクラスを足したら、下の :not() と align-content 側にも追加する */
+section.content.middle .body:not(.two-col):not(.compare):not(.issue-grid):not(.shot-split):not(.shot-full) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section.content.middle .two-col,
+section.content.middle .compare,
+section.content.middle .issue-grid {
+  align-content: center;
+}
+/* .body の中央は見出しの分だけスライド全体の中央より下にあり、そのままだと
+   ページ全体では沈んで見える。下に余白を確保して中身を持ち上げ、視覚的な中央に寄せる
+   （持ち上がる量は --middle-pad-bottom の半分） */
+section.content.middle .body:not(.shot-split):not(.shot-full) {
+  padding-bottom: var(--middle-pad-bottom);
+}
+
+/* ---- two column (汎用2カラム) ---- */
+section.content .two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  flex: auto;
+}
+/* カラムの中で部品を縦に積んだ場合も .body 直下と同じ間隔にする。
+   カラムを `*` で受けると、カラムが ul.panel-list 直接のとき li 同士にも
+   margin が乗り、panel-list 自身の gap と二重になる。部品を積むカラムは
+   div でラップする前提（patterns.md 参照）なので div に限定する */
+section.content .two-col > div > * + * {
+  margin-top: var(--stack-gap);
+}
+
+/* ---- panel list (default bullet look) ---- */
+section.content .panel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+section.content .panel-list li {
+  background: var(--surface);
+  border-left: var(--panel-bar-width) solid var(--accent);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  box-shadow: var(--card-shadow);
+  padding: 14px 20px;
+  font-size: 0.95em;
+  line-height: 1.55;
+  color: var(--gray-900);
+}
+
+/* ---- grid overview cards (2x2 etc) ---- */
+section.content .grid-cards {
+  display: grid;
+  gap: 16px;
+}
+section.content .grid-cards.cols-2 { grid-template-columns: 1fr 1fr; }
+section.content .grid-cards.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+section.content .card {
+  background: var(--surface);
+  border: var(--card-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+  padding: 20px 24px;
+  min-height: 76px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+section.content .card .badge {
+  flex: none;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  font-size: 0.85em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section.content .card .txt {
+  font-size: 0.92em;
+  line-height: 1.55;
+  color: var(--gray-900);
+}
+
+/* ---- stat cards row ---- */
+/* 部品どうしの間隔は .body 側の --stack-gap で付けるので、
+   ここでは下マージンを持たない（二重に空くのを防ぐ） */
+section.content .stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+section.content .stat-card {
+  background: var(--primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+  padding: 22px 20px;
+  text-align: center;
+  color: var(--white);
+}
+section.content .stat-card .num {
+  font-size: 1.9em;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.1;
+}
+section.content .stat-card .num .unit {
+  font-size: 0.42em;
+  font-weight: 500;
+  margin-left: 0.15em;
+}
+section.content .stat-card .label {
+  margin-top: 6px;
+  font-size: 0.78em;
+  color: var(--on-primary-faint);
+  letter-spacing: 0.02em;
+}
+
+/* ---- comparison (2 column) ---- */
+section.content .compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  flex: auto;
+}
+section.content .compare-card {
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  border: 2px solid var(--gray-200);
+  box-shadow: var(--card-shadow);
+  background: var(--white);
+}
+section.content .compare-card .tag {
+  display: inline-block;
+  font-size: 0.78em;
+  font-weight: 700;
+  color: var(--gray-500);
+  background: var(--gray-100);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 12px;
+}
+section.content .compare-card h3 {
+  font-size: 1.15em;
+  color: var(--gray-700);
+  margin: 0 0 0.5em 0;
+}
+section.content .compare-card p {
+  font-size: 0.9em;
+  line-height: 1.6;
+  color: var(--gray-700);
+  margin: 0;
+}
+section.content .compare-card.selected {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  position: relative;
+}
+/* 小さい太字のタグはアクセント色の地だと沈むため、バッジや数値カードと同じ
+   「濃色地＋白文字」で置く。選択側であることは枠線と地色（--accent-light）が示す */
+section.content .compare-card.selected .tag {
+  background: var(--primary);
+  color: var(--white);
+}
+section.content .compare-card.selected h3 {
+  color: var(--primary);
+  font-weight: 700;
+}
+section.content .compare-card.selected p { color: var(--gray-900); }
+
+/* ---- issue grid 2x2 ---- */
+section.content .issue-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+  flex: auto;
+}
+/* 4件に届かないときは列数・行数を指定する（3件なら cols-3 rows-1、2件なら rows-1） */
+section.content .issue-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+section.content .issue-grid.rows-1 { grid-template-rows: auto; }
+section.content .issue-card {
+  background: var(--surface);
+  border: var(--card-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--card-shadow);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section.content .issue-card .prob {
+  font-size: 0.92em;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+section.content .issue-card .sol {
+  font-size: 0.82em;
+  color: var(--gray-700);
+  line-height: 1.5;
+}
+section.content .issue-card .sol .arrow { color: var(--accent); font-weight: 700; }
+
+/* ---- process flow (horizontal steps) ---- */
+section.content .flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 6px 0 0 0;
+}
+section.content .flow-step {
+  flex: 1;
+  background: var(--surface);
+  border: var(--card-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--card-shadow);
+  padding: 14px 16px;
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--gray-900);
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* 見出し付きステップは見出しを上端に固定し、カード間で高さを揃える */
+section.content .flow-step:has(.step-label) {
+  justify-content: flex-start;
+}
+section.content .flow-step .step-label {
+  display: block;
+  width: 100%;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.05em;
+  line-height: 1.3;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--gray-200);
+}
+section.content .flow-arrow {
+  flex: none;
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+/* ---- screenshots ---- */
+section.content .shot-full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+section.content .shot-split {
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 44px;
+  align-items: center;
+  min-height: 0;
+}
+section.content .shot-full img,
+section.content .shot-split img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-300);
+  box-shadow: 0 8px 26px var(--shadow-color);
+  object-fit: contain;
+}
+/* PDF出力（Chromeの印刷経路）ではbox-shadowのぼかしが失われ、角張った灰色の
+   矩形として描画される。ぼかしなし・spreadのみのリングに置き換えると
+   角丸が保たれるため、外周に数pxの淡いフチを乗せた見え方に揃える */
+@media print {
+  section.content .shot-full img,
+  section.content .shot-split img {
+    box-shadow: 0 0 0 4px var(--shadow-color);
+  }
+}
+section.content .shot-full img { max-height: 100%; }
+section.content .shot-split img { max-height: 400px; }
+/* カラムの中で部品を縦に積んだ場合も .body 直下と同じ間隔にする（two-col と同じ扱い）。
+   キャプションは画像に添うものなので、この間隔からは外して .shot-cap 側の値を使う */
+section.content .shot-split > div > * + *:not(.shot-cap) {
+  margin-top: var(--stack-gap);
+}
+section.content .shot-cap {
+  margin-top: 10px;
+  font-size: 0.7em;
+  color: var(--gray-500);
+  text-align: center;
+}
+/* キャプション内のリンクはキャプションの色に従わせる（下線でリンクと分かる） */
+section.content .shot-cap a {
+  color: inherit;
+  text-decoration: underline;
+}
+/* 比較カード内のスクショ */
+section.content .compare-card img {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  object-position: top;
+  margin-top: 12px;
+  border-radius: var(--radius-xs);
+}
+/* 小サイズ素材はUIパーツとして等倍寄りで置く */
+section.content .issue-card img {
+  display: block;
+  align-self: flex-start;
+  height: 46px;
+  width: auto;
+  margin-top: 10px;
+}
+
+/* ---- callout box ---- */
+section.content .callout {
+  border: 2px solid var(--accent);
+  background: var(--accent-light);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  font-size: 0.92em;
+  line-height: 1.6;
+  color: var(--primary-dark);
+}
+section.content .callout strong { color: var(--primary); }
+
+/* ---- learning numbered grid ---- */
+section.content .learn-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(4, auto);
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+}
+/* 項目が少ないときは行数を減らして2列を保つ（列方向に流し込むため、
+   行数を指定しないと片側の列だけが埋まる）。4項目なら rows-2、6項目なら rows-3 */
+section.content .learn-grid.rows-2 { grid-template-rows: repeat(2, auto); }
+section.content .learn-grid.rows-3 { grid-template-rows: repeat(3, auto); }
+/* 項目が少ないぶん1件あたりに使える面積が広いので、文字も8項目時より大きくする */
+section.content .learn-grid.rows-2 .learn-item { padding: 16px 18px; }
+section.content .learn-grid.rows-2 .t { font-size: 0.88em; }
+section.content .learn-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--surface);
+  border: var(--card-border);
+  border-radius: var(--radius-xs);
+  padding: 10px 14px;
+}
+section.content .learn-item .n {
+  flex: none;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  font-size: 0.72em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.15em;
+}
+/* 全項目が1行に収まるときは、番号を折り返し前提の上寄せからテキストと同じ高さへ */
+section.content .learn-grid.oneline .learn-item { align-items: center; }
+section.content .learn-grid.oneline .learn-item .n { margin-top: 0; }
+section.content .learn-item .t {
+  font-size: 0.78em;
+  line-height: 1.5;
+  color: var(--gray-900);
+}
+
+/* ---- reference slide ---- */
+section.content.reference {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+section.content.reference h1 {
+  align-self: center;
+}
+section.content.reference h1::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+section.content.reference .head { justify-content: center; }
+section.content.reference .ref-card {
+  margin: 24px auto 0 auto;
+  max-width: 880px;
+  background: var(--surface);
+  border: var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  padding: 26px 34px;
+}
+section.content.reference .ref-card .title {
+  font-size: 1.05em;
+  color: var(--gray-900);
+  margin-bottom: 10px;
+}
+section.content.reference .ref-card .url {
+  display: inline-block;
+  font-size: 0.88em;
+  color: var(--white);
+  background: var(--primary);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+}

@@ -1,0 +1,32 @@
+/* @theme casual-mint */
+/* カジュアル / ミント×コーラル: 社内LT・勉強会・もくもく会など、肩の力を抜いた場向け */
+@import "base";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap');
+
+:root {
+  /* ---- トーン: casual（丸ゴシック・大きめ角丸・やわらかい影） ---- */
+  --font-body: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif;
+  --weight-head: 700;
+  --weight-title: 800;
+  --radius-lg: 22px;
+  --radius-md: 20px;
+  --radius-sm: 16px;
+  --radius-xs: 14px;
+  --radius-chip: 8px;
+  --radius-bar: 999px;
+  --card-shadow: 0 3px 10px rgba(23, 121, 107, 0.08);
+
+  /* ---- カラー: ミントグリーン×コーラル ---- */
+  --primary: #17796B;
+  --primary-dark: #0E5A4F;
+  --primary-bright: #23988A;
+  --accent: #EE6C4D;
+  --accent-ink: #EC5B38;      /* 淡色地の章番号用 */
+  --accent-light: #FDEEE9;
+  --on-primary-sub: #B7DFD7;
+  --on-primary-muted: #ABD2CA;
+  --on-primary-faint: #DCF3EE;
+  --accent-glow: rgba(238, 108, 77, 0.35);
+  --shadow-color: rgba(23, 121, 107, 0.18);
+  --code-bg: #053029;          /* primary-dark だとハイライトが6:1を割るため個別指定 */
+}

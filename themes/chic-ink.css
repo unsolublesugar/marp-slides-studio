@@ -1,0 +1,38 @@
+/* @theme chic-ink */
+/* シック / 墨×シャンパンゴールド: 対談・カンファレンス基調講演など、静かで品のある場向け */
+@import "base";
+@import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---- トーン: chic（明朝・角丸ほぼゼロ・字間広め・装飾控えめ） ---- */
+  --font-body: 'Zen Old Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --weight-head: 600;
+  --weight-title: 700;
+  --letter-head: 0.04em;
+  --letter-title: 0.08em;
+  --radius-lg: 2px;
+  --radius-md: 2px;
+  --radius-sm: 2px;
+  --radius-xs: 2px;
+  --radius-chip: 2px;
+  --radius-pill: 2px;
+  --radius-bar: 0;
+  --panel-bar-width: 2px;
+  --surface: var(--white);
+  --card-border: 1px solid var(--gray-200);
+  --orb-opacity: 0.55;
+  --hero-bg: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 100%);
+
+  /* ---- カラー: 墨×シャンパンゴールド ---- */
+  --primary: #23201D;
+  --primary-dark: #14120F;
+  --primary-bright: #3A352F;
+  --accent: #8A6E33;
+  --accent-light: #F7F1E4;
+  --on-primary-sub: #D8D2C8;
+  --on-primary-muted: #B8B1A6;
+  --on-primary-faint: #E4DFD6;
+  --accent-glow: rgba(138, 110, 51, 0.30);
+  --shadow-color: rgba(35, 32, 29, 0.16);
+  --bg-alt: #F7F5F1;
+}

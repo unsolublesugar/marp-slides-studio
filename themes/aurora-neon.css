@@ -1,0 +1,30 @@
+/* @theme aurora-neon */
+/* オーロラ / 漆黒×シアン×レッド: LT・デモ・ガジェット系など、勢いを出したい場向け */
+/* 暗い全面キャンバスで使う前提の値（--canvas-bg / --ribbon-*）も持つ。
+   実際に暗くするのは themes/layout-aurora.css で、単体で使えば通常の明るいテーマになる */
+@import "base";
+
+:root {
+  /* ---- カラー: 漆黒×シアン×レッド ---- */
+  --primary: #1F2937;
+  --primary-dark: #050506;
+  --primary-bright: #3F4654;
+  --accent: #22D3EE;
+  --accent-2: #FF4B3E;
+  --accent-ink: #0D96AB;       /* 単体（明るいキャンバス）で使うときの章番号用 */
+  --accent-light: rgba(34, 211, 238, 0.16);
+  --on-hero-accent: var(--accent);  /* 既定の accent-light は半透明tintのため、濃色表紙のラベルが沈む */
+  --on-primary-sub: #CBD5E1;
+  --on-primary-muted: #94A3B8;
+  --on-primary-faint: #E2E8F0;
+  --accent-glow: rgba(34, 211, 238, 0.32);
+  --shadow-color: rgba(0, 0, 0, 0.55);
+  --bg-alt: #F4F5F7;
+  --code-bg: #0C0D10;
+
+  /* ---- 暗いキャンバスの地とリボン（layout-aurora が使う） ---- */
+  --canvas-bg: radial-gradient(120% 110% at 50% 45%, #101116 0%, #050506 72%);
+  --ribbon-1: rgba(255, 75, 62, 0.80);
+  --ribbon-2: rgba(34, 211, 238, 0.72);
+  --ribbon-3: rgba(245, 158, 11, 0.62);
+}

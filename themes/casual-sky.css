@@ -1,0 +1,32 @@
+/* @theme casual-sky */
+/* カジュアル / スカイブルー×レモン: 屋外イベント・ワークショップなど開放感のある場向け */
+@import "base";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap');
+
+:root {
+  /* ---- トーン: casual（丸ゴシック・大きめ角丸・やわらかい影） ---- */
+  --font-body: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif;
+  --weight-head: 700;
+  --weight-title: 800;
+  --radius-lg: 22px;
+  --radius-md: 20px;
+  --radius-sm: 16px;
+  --radius-xs: 14px;
+  --radius-chip: 8px;
+  --radius-bar: 999px;
+  --card-shadow: 0 3px 10px rgba(21, 82, 115, 0.08);
+
+  /* ---- カラー: スカイブルー×レモンイエロー ---- */
+  --primary: #1E6E9C;
+  --primary-dark: #155273;
+  --primary-bright: #3D97C6;
+  --accent: #F7C948;
+  --accent-ink: #A8790A;      /* 淡色地の章番号用（レモンのまま置くと沈む） */
+  --accent-light: #FEF6DC;
+  --on-primary-sub: #BFE0EF;
+  --on-primary-muted: #A8D0E4;
+  --on-primary-faint: #D7EDF7;
+  --accent-glow: rgba(247, 201, 72, 0.35);
+  --shadow-color: rgba(21, 82, 115, 0.18);
+  --code-bg: #0B2F42;          /* primary-dark だとハイライトが6:1を割るため個別指定 */
+}

@@ -1,0 +1,73 @@
+/* @theme layout-wave */
+/*
+ * レイアウトレイヤー: wave（白地＋角から流れ込む波）
+ * 濃色の面をやめて白いキャンバスにし、右上と左下から有機的な色面を差し込む。
+ * 単体では使わず、カラーテーマの後に @import して重ねる:
+ *   @import "sunrise"; @import "layout-wave";
+ * 波の色は --wave-1 / --wave-2 をカラーテーマ側が決める。
+ * base.css と同じセレクタで上書きするため、必ず base より後に読み込むこと。
+ */
+
+:root {
+  --orb-opacity: 0;                     /* 装飾は波に任せる */
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ============ 白いキャンバスと波 ============ */
+/* 波は section の背景レイヤーとして重ねる。Marpit が section の ::before を
+   装飾用に押さえているので疑似要素は使えない。角に置いた楕円を2枚ずらして
+   重ね、輪郭をうねらせて「流れ込む面」に見せている。
+   ぼかしを使うとPDF（印刷経路）で失われるため、ベタ塗りのグラデーションで描く */
+:root {
+  --wave-corners:
+    radial-gradient(ellipse 34% 24% at 74% -6%, var(--wave-2) 0 99.5%, transparent 100%),
+    radial-gradient(ellipse 30% 34% at 112% 4%, var(--wave-2) 0 99.5%, transparent 100%),
+    radial-gradient(ellipse 36% 30% at 118% 14%, var(--wave-1) 0 99.5%, transparent 100%),
+    radial-gradient(ellipse 34% 24% at 26% 106%, var(--wave-2) 0 99.5%, transparent 100%),
+    radial-gradient(ellipse 30% 34% at -12% 96%, var(--wave-2) 0 99.5%, transparent 100%),
+    radial-gradient(ellipse 36% 30% at -18% 86%, var(--wave-1) 0 99.5%, transparent 100%);
+}
+
+section,
+section.title,
+section.section,
+section.quote,
+section.closing {
+  overflow: hidden;
+  background: var(--wave-corners), var(--white);
+  color: var(--gray-900);
+}
+
+/* 本文は読ませる面なので、波は角に小さく置くだけにする */
+section.content {
+  background:
+    radial-gradient(ellipse 16% 14% at 96% -6%, var(--wave-2) 0 99.5%, transparent 100%),
+    radial-gradient(ellipse 14% 20% at 108% 2%, var(--wave-1) 0 99.5%, transparent 100%),
+    radial-gradient(ellipse 18% 14% at 2% 108%, var(--wave-2) 0 99.5%, transparent 100%),
+    radial-gradient(ellipse 12% 18% at -6% 98%, var(--wave-1) 0 99.5%, transparent 100%),
+    var(--white);
+}
+
+/* ============ title: 白地に濃色の文字 ============ */
+section.title { padding: 0 110px; }
+section.title .orb { display: none; }
+section.title h1 { color: var(--gray-900); }
+section.title h2 { color: var(--gray-700); font-weight: 400; }
+section.title .meta { color: var(--gray-500); }
+section.title .eyebrow { color: var(--accent-ink); }
+
+/* ============ section（章扉）: 斜めパネルをやめ、波の中に文字を置く ============ */
+section.section .side { display: none; }
+section.section h1 { color: var(--gray-900); }
+section.section .chapter-num { color: var(--accent-ink); }
+
+/* ============ quote / closing ============ */
+section.quote blockquote { color: var(--gray-900); }
+section.closing .orb { display: none; }
+section.closing h1 { color: var(--gray-900); }
+section.closing p { color: var(--gray-700); }
+section.closing a { color: var(--accent-ink); }
+
+/* ============ lead ============ */
+section.lead h1 { color: var(--gray-900); }
+section.lead h1 strong { color: var(--primary); }

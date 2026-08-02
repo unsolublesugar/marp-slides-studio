@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "テーマ変更の波及先をチェック",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/theme-changed.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
