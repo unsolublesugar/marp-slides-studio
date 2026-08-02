@@ -224,7 +224,7 @@ const TONES = [
 // split は表紙タイトルが左半分に入るので、見本も短いタイトルにする
 const LAYOUTS = [
   ['band-navy'],
-  ['split-charcoal', '発表タイトルを<br>ここに'],
+  ['split-charcoal', SHORT],
   ['minimal-slate'],
   ['aurora-night'],
   ['wave-sunrise'],
