@@ -1,6 +1,6 @@
 # marp-slides-studio
 
-Marpスライドの制作環境（スタジオ）。スライドは1デッキ=1ディレクトリで管理する。Claude Code 以外のエージェント向けの入口は [AGENTS.md](AGENTS.md)。
+Marpスライドの制作環境。スライドは1デッキ=1ディレクトリで管理する。Claude Code 以外のエージェント向けの入口は [AGENTS.md](AGENTS.md)。
 
 ## 構成
 
