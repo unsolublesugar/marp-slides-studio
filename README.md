@@ -7,7 +7,7 @@
 ![Markdown](https://img.shields.io/badge/Markdown-000000?logo=markdown&logoColor=white)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-D97757?logo=anthropic&logoColor=white)
 
-[Marp](https://marp.app/) でLT・発表スライドを作るためのスライド制作環境（スタジオ）です。AIエージェントにスライド作成を依頼するワークフローを同梱しています（Claude Code はスキル・hook までフル対応、他エージェントは [AGENTS.md](AGENTS.md) 経由）。
+[Marp](https://marp.app/) でLT・発表スライドを作るためのスライド制作環境です。AIエージェントにスライド作成を依頼するワークフローを同梱しています（Claude Code はスキル・hook までフル対応、他エージェントは [AGENTS.md](AGENTS.md) 経由）。
 
 Markdownを書くだけで、配色とレイアウトが揃ったスライドができます。1デッキ=1ディレクトリで管理し、共通テーマ（テーマ50種＋レイアウトパターン集）を使い回します。
 
