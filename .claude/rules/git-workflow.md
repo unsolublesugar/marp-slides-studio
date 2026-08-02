@@ -25,4 +25,4 @@ description: Git・PR の運用規範（ブランチ→PR→Copilotレビュー�
 
 - コミットメッセージは日本語で「何を・なぜ」が分かるように。1行目は変更の要約
 - 生成物（slides.html / slides.pdf）は各デッキのディレクトリ内に置く。検証用PNG（`<deck>/png/` / `.gallery/` / `.docs-shot/`）はコミットしない（.gitignore 済み）
-- `docs/*.png` は手作業で撮らず `npm run docs-shot` でのみ再生成する（marp-shots スキル）
+- `docs/*.png` の再生成は原則 `npm run docs-shot` で行う（marp-shots スキル）。ただし**ユーザーが手動で作成・加工した画像への差し替えは可**。手動画像が置かれている場合、エージェントは依頼なしに `docs-shot` で上書きしない
