@@ -4,7 +4,7 @@ Marpスライドの制作環境（スタジオ）。スライドは1デッキ=1�
 
 ## 構成
 
-- `slides/<YYYYMMDD>-<slug>/` — 各スライドデッキ（slides.md + assets/ + 生成物）
+- `slides/<YYYYMMDD>-<slug>/` — 各スライドデッキ（slides.md + assets/ + 生成物）。**公開リポジトリ（unsolublesugar/marp-slides-studio）では見本デッキ以外の slides/ は .gitignore 済み**。ここに私物デッキを追加・コミットしない（スライド制作はテンプレートから作った自分のリポジトリで行う）
 - `themes/` — 共通テーマCSS。`base`(=navy) がレイアウトとトークンの実体
   - スタンダード（カラーのみ上書き）: `navy` / `wine` / `forest` / `charcoal` / `sunrise` / `coral`
   - トーン付き（書体・角丸・影＋カラーを上書き）: `casual-*` / `pop-*` / `chic-*` / `business-*` / `pastel-*`

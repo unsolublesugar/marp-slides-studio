@@ -5,6 +5,11 @@ node_modules/
 .claude/settings.local.json
 .claude/scheduled_tasks.lock
 
+# 公開リポジトリに私物スライドを誤pushしないよう、見本デッキ以外は無視する。
+# テンプレートから作った自分のリポジトリでは、次の2行を削除してデッキをコミットする
+slides/*
+!slides/20260101-sample-deck/
+
 # レイアウト検証用のスライド画像（成果物はhtml/pdfのみコミット）
 slides/*/png/
 template/png/
