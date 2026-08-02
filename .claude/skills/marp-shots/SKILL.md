@@ -20,7 +20,7 @@ description: README掲載用スクリーンショット（docs/*.png）の生成
 
 | プリセット | 中身 | 段組 |
 | --- | --- | --- |
-| `themes` | カラーテーマの表紙（`COLOR_THEMES` の全件） | 3列 |
+| `themes` | レイアウト×配色×トーンの幅が伝わるよう選んだ表紙（`SHOWCASE_THEMES`） | 3列 |
 | `tones` | トーンの代表（casual/pop/chic/business）の本文 | 2列 |
 | `layouts` | レイアウトレイヤーごとの代表の表紙＋本文のペア（1行=1レイアウト） | 2列 |
 | `patterns` | 代表的なレイアウトパターン（navy） | 3列・枠線 |
@@ -43,7 +43,7 @@ Chromeは `/Applications/Google Chrome.app` などの既定パスを探す。見
 
 すべて `scripts/docs-shot.mjs` の中で完結している。
 
-- **テーマを足した** → `COLOR_THEMES` / `TONES` / `LAYOUTS` の配列に追加する。`LAYOUTS` は `['テーマ名', '短い表紙タイトル(省略可)']` の形式
+- **テーマを足した** → `SHOWCASE_THEMES` / `TONES` / `LAYOUTS` の配列に追加する。`SHOWCASE_THEMES` と `LAYOUTS` は `['テーマ名', '短い表紙タイトル(省略可)']` の形式。`SHOWCASE_THEMES` は全件掲載ではなく、各行にレイアウトの異なるテーマを混ぜて選ぶ
 - **パターンを足した** → `PATTERN_SLIDES` にスライドのHTMLを追加する（`template/slides.md` から該当スライドを写す）
 - **段組・サイズを変えたい** → `PRESETS` の `cols` / `cell`（1枚の表示幅px）/ `gap` / `frame`（枠線の有無）
 
