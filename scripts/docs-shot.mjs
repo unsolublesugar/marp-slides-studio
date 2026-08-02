@@ -201,11 +201,17 @@ const DIFF_SLIDE = `<!-- _class: content -->
 // ---------------------------------------------------------------- プリセット
 // cell: 1枚あたりの表示幅(px)。高さは16:9で自動。frame: カード風の枠線を付ける
 
-const COLOR_THEMES = [
-  'navy', 'wine', 'forest', 'charcoal', 'sunrise', 'coral',
-  'casual-mint', 'casual-berry', 'casual-sky', 'pop-neon', 'pop-soda',
-  'chic-ink', 'chic-plum', 'business-azure', 'business-slate',
-  'pastel-sky', 'pastel-cream', 'pastel-sage',
+// README冒頭の見本。色違いを網羅するのではなく、レイアウト×配色×トーンの
+// 組み合わせの幅が一目で伝わるよう、各行にレイアウトの異なるテーマを混ぜる。
+// split 系は表紙タイトルが左半分に入るため短いタイトルを添える
+const SHORT = '発表タイトルを<br>ここに';
+const SHOWCASE_THEMES = [
+  ['navy'], ['band-wine'], ['split-forest', SHORT],
+  ['wave-sunrise'], ['minimal-slate'], ['aurora-night'],
+  ['casual-mint'], ['split-charcoal', SHORT], ['wave-coral'],
+  ['chic-ink'], ['band-sunrise'], ['minimal-coral'],
+  ['pop-neon'], ['band-pop-soda'], ['split-chic-ink', SHORT],
+  ['pastel-sky'], ['business-azure'], ['aurora-neon'],
 ];
 
 const TONES = [
@@ -218,7 +224,7 @@ const TONES = [
 // split は表紙タイトルが左半分に入るので、見本も短いタイトルにする
 const LAYOUTS = [
   ['band-navy'],
-  ['split-charcoal', '発表タイトルを<br>ここに'],
+  ['split-charcoal', SHORT],
   ['minimal-slate'],
   ['aurora-night'],
   ['wave-sunrise'],
@@ -236,7 +242,7 @@ const PREVIEW_THEMES = ['aurora-night', 'navy', 'wine', 'casual-mint', 'chic-ink
 const PRESETS = {
   themes: {
     cols: 3, cell: 420, gap: 12, frame: false,
-    cells: () => COLOR_THEMES.map((t) => ({ theme: t, md: titleSlide(t) })),
+    cells: () => SHOWCASE_THEMES.map(([t, title]) => ({ theme: t, md: titleSlide(t, title) })),
   },
   tones: {
     cols: 2, cell: 636, gap: 12, frame: false,
