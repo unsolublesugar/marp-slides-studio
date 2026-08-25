@@ -46,7 +46,8 @@ if (existsSync(join(deckDir, 'assets'))) cpSync(join(deckDir, 'assets'), join(WO
 for (const t of themes) writeFileSync(join(WORK, `${t.name}.md`), source.replace(/^theme:\s*\S+$/m, `theme: ${t.name}`));
 
 console.log(`${themes.length}テーマ分のHTMLを書き出しています…`);
-execFileSync('npx', ['--no-install', '@marp-team/marp-cli', '--theme-set', 'themes', '--html', WORK], {
+// npx をWindowsで直接spawnできない（.cmd 実行制限）ため、ローカルの marp-cli を node で直接起動する
+execFileSync(process.execPath, [join(ROOT, 'node_modules', '@marp-team', 'marp-cli', 'marp-cli.js'), '--theme-set', 'themes', '--html', WORK], {
   cwd: ROOT,
   stdio: ['ignore', 'ignore', 'inherit'],
 });

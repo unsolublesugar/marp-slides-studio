@@ -22,6 +22,9 @@ export const chromePath = () =>
     '/usr/bin/google-chrome',
     '/usr/bin/chromium',
     '/usr/bin/chromium-browser',
+    `${process.env['ProgramFiles'] ?? 'C:\\Program Files'}\\Google\\Chrome\\Application\\chrome.exe`,
+    `${process.env['ProgramFiles(x86)'] ?? 'C:\\Program Files (x86)'}\\Google\\Chrome\\Application\\chrome.exe`,
+    `${process.env.LOCALAPPDATA ?? ''}\\Google\\Chrome\\Application\\chrome.exe`,
   ].find((p) => existsSync(p)) ||
   null;
 
@@ -32,10 +35,11 @@ export function requireChrome() {
 
 /** ディレクトリ内の .md をまとめてPNG化する（Chrome起動は1回で済む） */
 export function renderDeckDir(dir) {
+  // npx をWindowsで直接spawnできない（.cmd 実行制限）ため、ローカルの marp-cli を node で直接起動する
   execFileSync(
-    'npx',
+    process.execPath,
     // --allow-local-files: 見本デッキが同ディレクトリのプレースホルダ画像を参照できるようにする
-    ['--no-install', '@marp-team/marp-cli', '--theme-set', 'themes', '--html', '--allow-local-files', '--images', 'png', dir],
+    [join(ROOT, 'node_modules', '@marp-team', 'marp-cli', 'marp-cli.js'), '--theme-set', 'themes', '--html', '--allow-local-files', '--images', 'png', dir],
     { cwd: ROOT, stdio: ['ignore', 'ignore', 'inherit'] },
   );
 }
