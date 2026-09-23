@@ -1,7 +1,7 @@
 /* @theme layout-aurora */
 /*
  * レイアウトレイヤー: aurora（暗い全面キャンバス＋流れる光のリボン）
- * 全スライドを濃色の地にし、四隅から伸びる光の弧を敷く。文字と面は暗背景向けに反転する。
+ * 全スライドを濃色の地にし、対角の2隅から差し込む光を敷く。文字と面は暗背景向けに反転する。
  * 単体では使わず、カラーテーマの後に @import して重ねる:
  *   @import "aurora-blue"; @import "layout-aurora";
  * 地の色は --canvas-bg、リボンの色は --ribbon-1..3 をカラーテーマ側が決める。
@@ -38,19 +38,14 @@
 /* ============ キャンバスとリボン ============ */
 /* 光のリボンは section の背景レイヤーとして重ねる。
    Marpit は section の ::before を装飾用に押さえているので疑似要素は使えない。
-   隅に置いた楕円の輪郭だけを細く残し、角に沿う弧として描く。
-   中央は本文が乗る場所なので、弧が中心へ届かない半径に留めている。
+   対角の2隅から差し込む光だけで構成し、輪郭線は描かない（角に沿う細い弧は
+   文字と競合して落ち着かないため使わない）。
+   中央は本文が乗る場所なので、光が中心へ届かない半径に留めている。
    ぼかしを使うとPDF（印刷経路）で失われるため、グラデーションだけで構成する */
 :root {
   --aurora-ribbons:
-    radial-gradient(52% 42% at 106% -10%, var(--ribbon-1) 0%, transparent 62%),
-    radial-gradient(48% 38% at -8% 108%, var(--ribbon-2) 0%, transparent 62%),
-    radial-gradient(ellipse 40% 52% at 110% 108%, transparent 46.8%, var(--ribbon-3) 48%, transparent 49.4%),
-    radial-gradient(ellipse 48% 62% at 110% 108%, transparent 47%, rgba(255, 255, 255, 0.45) 48%, transparent 49%),
-    radial-gradient(ellipse 58% 74% at 110% 108%, transparent 46.8%, var(--ribbon-1) 48%, transparent 49.4%),
-    radial-gradient(ellipse 70% 88% at 110% 108%, transparent 46.9%, var(--ribbon-2) 48.1%, transparent 49.5%),
-    radial-gradient(ellipse 42% 54% at -10% -8%, transparent 46.8%, var(--ribbon-3) 48%, transparent 49.4%),
-    radial-gradient(ellipse 60% 76% at -10% -8%, transparent 46.9%, var(--ribbon-2) 48.1%, transparent 49.5%);
+    radial-gradient(62% 52% at 106% -10%, var(--ribbon-1) 0%, var(--ribbon-3) 38%, transparent 68%),
+    radial-gradient(58% 48% at -8% 108%, var(--ribbon-2) 0%, transparent 66%);
 }
 section,
 section.title,
@@ -138,10 +133,7 @@ section.closing .orb { display: none; }
 section.closing p { color: var(--on-primary-sub); }
 
 /* ============ content の部品 ============ */
-section.content .head .num {
-  background: rgba(255, 255, 255, 0.10);
-  color: var(--accent);
-}
+section.content .head .num,
 section.content .card .badge,
 section.content .learn-item .n {
   background: linear-gradient(140deg, var(--accent) 0%, var(--accent-2) 100%);

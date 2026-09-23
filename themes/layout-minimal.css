@@ -62,6 +62,7 @@ section.content h1.bare::after { display: none; }
 section.content .head .num {
   width: 44px; height: 44px;
   background: transparent;
+  color: var(--accent);
   border: 1px solid var(--accent);
   font-size: 1.1em;
 }

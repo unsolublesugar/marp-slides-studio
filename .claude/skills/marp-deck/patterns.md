@@ -21,7 +21,7 @@
 ```html
 <!-- _class: content -->
 <div class="head"><h1 class="bare">見出し</h1></div>          <!-- 通常見出し -->
-<div class="head"><div class="num">①</div><h1>見出し</h1></div> <!-- 番号付き見出し -->
+<div class="head"><div class="num">1</div><h1>見出し</h1></div> <!-- 番号付き見出し。番号は丸い地に乗るので丸数字(①)は使わない -->
 <div class="body"> ...部品... </div>
 ```
 
