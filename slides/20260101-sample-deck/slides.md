@@ -79,12 +79,13 @@ html: true
 
 <!-- _class: content -->
 <!-- レイアウト: 番号付きヘッダ — 章内のステップ解説に使う -->
+<!-- 番号は丸い地の上に乗るので、丸数字ではなく 1 2 3 と書く -->
 
-<div class="head"><div class="num">①</div><h1>番号付き見出しのスライド</h1></div>
+<div class="head"><div class="num">1</div><h1>番号付き見出しのスライド</h1></div>
 <div class="body">
 <ul class="panel-list">
-  <li>章の中で手順・ステップを追うときは丸数字ヘッダを使う</li>
-  <li>ヘッダの番号は ①②③… を手書きする</li>
+  <li>章の中で手順・ステップを追うときは番号付きヘッダを使う</li>
+  <li>番号は <code>1</code> <code>2</code> <code>3</code> … と手書きする（丸数字は使わない）</li>
 </ul>
 </div>
 

@@ -10,7 +10,7 @@
 
 ## PDF（Chrome の印刷経路）での描画差
 
-- **`filter: blur()` は PDF で失われる**。装飾はグラデーションのみで構成する（layout-aurora の弧は極細ストップの radial-gradient で輪郭だけ残している）
+- **`filter: blur()` は PDF で失われる**。装飾はグラデーションのみで構成する（layout-aurora の隅の光は radial-gradient のぼかしなしの階調だけで描いている）
 - **`box-shadow` のぼかしも PDF で失われて角張った矩形になる**。base.css は `@media print` で spread のみのリング（`box-shadow: 0 0 0 4px`）に差し替え済み
 - 4K で PDF の文字がぼやけて見える場合、テキストはベクターなので原因は**素材PNGの実ピクセル不足**（全画面表示には表示pxの3倍が目安）
 
